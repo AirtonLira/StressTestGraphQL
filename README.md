@@ -5,7 +5,7 @@ com o objetivo de obter métricas sobre o desempenho do server no qual estão re
 
 <p align="center">
   <a href="" rel="noopener">
- <img width=500px height=300px src="https://i.ibb.co/7pj4zZc/1.jpg" alt="grafana"></a>
+ <img width=1000px height=300px src="https://i.ibb.co/7pj4zZc/1.jpg" alt="grafana"></a>
 </p>
 
 <p align="center">
