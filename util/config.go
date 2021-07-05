@@ -1,22 +1,23 @@
 package util
 
 import (
-	"github.com/spf13/viper"
 	"log"
+
+	"github.com/spf13/viper"
 )
 
 type Config struct {
 	PathCertification string `mapstructure:"PATHCERTIFICATION"`
-	PathKey			  string `mapstructure:"PATHCERTIFICATIONKEY"`
+	PathKey           string `mapstructure:"PATHCERTIFICATIONKEY"`
 	Host              string `mapstructure:"HOST"`
-	Limits		      string `mapstructure:"TEST_LIMITS"`
+	Limits            string `mapstructure:"TEST_LIMITS"`
 	Threads           string `mapstructure:"THREADS""`
 	Goroutines        string `mapstructure:"GOROUTINES"`
-	Thumbprint		  string `mapstructure:"THUMBPRINT"`
+	Thumbprint        string `mapstructure:"THUMBPRINT"`
+	Domain            string `mapstructure:"DOMAIN"`
 }
 
-
-func LoadConfig(path string) (config Config){
+func LoadConfig(path string) (config Config) {
 	viper.AddConfigPath(path)
 	viper.SetConfigName("app")
 	viper.SetConfigType("env")
@@ -28,7 +29,7 @@ func LoadConfig(path string) (config Config){
 	}
 
 	err = viper.Unmarshal(&config)
-	if err != nil{
+	if err != nil {
 		log.Fatal("cannot read config viper:", err)
 	}
 	return

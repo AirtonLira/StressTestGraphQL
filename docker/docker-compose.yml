@@ -1,0 +1,35 @@
+version: "3"
+services:
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+      - ./dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml:ro
+      - ./dash-request.json:/etc/grafana/provisioning/dashboards/dash-request.json:ro
+    container_name: bookmark-grafana
+    network_mode: "bridge"
+    depends_on:
+      - prometheus
+      - prometheus-pushgateway
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    container_name: bookmark-prometheus
+    network_mode: "bridge"
+
+
+  prometheus-pushgateway:
+    image: prom/pushgateway
+    container_name: bookmark-pushgateway
+    expose:
+      - 9091
+    ports:
+      - "9091:9091"
